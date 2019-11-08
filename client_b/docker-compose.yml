@@ -3,7 +3,7 @@ services:
   rdf_store:
     image: jvsoest/graphdb-free:fairstation
     ports: 
-      - "7200:7200"
+      - "7201:7200"
     environment:
       - GDB_HEAP_SIZE=2g
       - GDB_MIN_MEM=1g
