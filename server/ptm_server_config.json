@@ -1,0 +1,3 @@
+{
+    "connectionString": "postgresql://postgres:masterh0st@dbhost:5432/ptm"
+}

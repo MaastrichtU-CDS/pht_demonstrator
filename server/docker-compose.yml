@@ -1,0 +1,19 @@
+version: "2"
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - ./postgres_create.sql:/docker-entrypoint-initdb.d/create.sql
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=masterh0st
+  ptmMaster:
+    image: jvsoest/ptm_master
+    volumes:
+      - ./ptm_server_config.json:/app/config.json
+    links:
+      - postgres:dbhost
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "postgres"
