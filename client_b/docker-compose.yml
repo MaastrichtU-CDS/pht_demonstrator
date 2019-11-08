@@ -1,9 +1,29 @@
 version: "3"
 services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    volumes:
+      - csvData:/srv
+      - ./filebrowser.json:/.filebrowser.json
+    ports:
+      - "28080:28080"
+  triplifier:
+    image: registry.gitlab.com/um-cds/fair/tools/triplifier:latest
+    environment:
+      - DB_JDBC=jdbc:relique:csv:/data?fileExtension=.csv
+      - DB_DRIVER=org.relique.jdbc.csv.CsvDriver
+      - DB_USER="user"
+      - DB_PASS="pass"
+      - OUTPUT_ENDPOINT=http://graphdb:7200/repositories/data
+      - SLEEPTIME=600
+    volumes:
+      - csvData:/data
+    links:
+      - rdf_store:graphdb
   rdf_store:
     image: jvsoest/graphdb-free:fairstation
     ports: 
-      - "7201:7200"
+      - "27200:7200"
     environment:
       - GDB_HEAP_SIZE=2g
       - GDB_MIN_MEM=1g
@@ -22,3 +42,4 @@ volumes:
   ioData:
     external:
       name: input_output_b
+  csvData:

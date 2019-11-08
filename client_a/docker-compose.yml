@@ -6,7 +6,7 @@ services:
       - csvData:/srv
       - ./filebrowser.json:/.filebrowser.json
     ports:
-      - 80:80
+      - 18080:18080
   triplifier:
     image: registry.gitlab.com/um-cds/fair/tools/triplifier:latest
     environment:
@@ -23,7 +23,7 @@ services:
   rdf_store:
     image: jvsoest/graphdb-free:fairstation
     ports: 
-      - "7200:7200"
+      - "17200:7200"
     environment:
       - GDB_HEAP_SIZE=2g
       - GDB_MIN_MEM=1g
