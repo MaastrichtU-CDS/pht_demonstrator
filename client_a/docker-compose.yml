@@ -3,7 +3,7 @@ services:
   ptmClient:
     image: jvsoest/ptm_client
     volumes:
-      - ./ptm_client_config.json:/app/config.json
+      - ./ptm_client_config.json:/ptm/config.json
       - ioData:/input_output
       - /var/run/docker.sock:/var/run/docker.sock
     extra_hosts:
