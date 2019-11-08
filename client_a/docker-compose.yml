@@ -1,11 +1,21 @@
 version: "3"
 services:
+  rdf_store:
+    image: jvsoest/graphdb-free:fairstation
+    ports: 
+      - "7200:7200"
+    environment:
+      - GDB_HEAP_SIZE=2g
+      - GDB_MIN_MEM=1g
+      - GDB_MAX_MEM=2g
   ptmClient:
     image: jvsoest/ptm_client
     volumes:
       - ./ptm_client_config.json:/ptm/config.json
       - ioData:/input_output
       - /var/run/docker.sock:/var/run/docker.sock
+    links:
+      - rdf_store:graphdb
     extra_hosts:
       - localmaster:172.17.0.1
 volumes:
