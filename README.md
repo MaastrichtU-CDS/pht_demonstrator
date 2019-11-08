@@ -12,3 +12,8 @@ Both stations contain the following components:
 * An RDF store for the available data
 * The Triplifier to convert the uploaded CSV files into RDF
 * A Filebrowser to upload CSV files
+
+## How to run this repository?
+
+There is a [startup.bat](startup.bat) file available for Windows users. This file can be executed to setup the complete infrastructure on one machine.
+The file [teardown.bat](teardown.bat) can be used to stop and remove all services accordingly.
