@@ -38,6 +38,7 @@ def get_sparql_dataframe(service, query):
     for row in processed_results['results']['bindings']:
         item = []
         for c in cols:
+            ## perform datatype check first
             item.append(row.get(c, {}).get('value'))
         out.append(item)
 
